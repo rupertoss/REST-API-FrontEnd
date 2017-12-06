@@ -1,0 +1,49 @@
+<form #form="ngForm">
+	<section>
+		<main>
+			<div class="col-md-3">
+			
+				<h2>Add/Edit Vehicle</h2>
+				
+				<div class="form-group">
+				<span class="h5"><label>Brand</label></span>
+				<input [(ngModel)]="veh.brand" type="text" class="form-control" name="brand" placeholder="Vehicle brand" required/>
+				</div>
+				
+				<div class="form-group">
+				<span class="h5"><label>Model</label></span>
+				<input [(ngModel)]="veh.model" type="text" class="form-control" name="model" placeholder="Vehicle model" required/>
+				</div>
+				
+				<div class="form-group">
+				<span class="h5"><label>Colour</label></span>
+				<select [(ngModel)]="veh.colour" class="form-control" name="colour" required>
+					<option *ngFor="let i = index of colours" value={{colours[i]}}>{{colours[i]}}</option>
+				</select>
+				</div>
+				
+				<div class="form-group">
+				<span class="h5"><label>Date of first registration</label></span>
+				<my-date-picker [options]="myDatePickerOptions" [placeholder]="veh.dateOfFirstRegistration" 
+					(dateChanged)="onDateChanged($event)"></my-date-picker>
+				</div>
+					
+				<div class="form-group">
+				<span class="h5"><label>Place of first registration</label></span>
+				<input [(ngModel)]="veh.placeOfFirstRegistration" type="text" class="form-control" 
+					name="placeOfFirstRegistration" placeholder="City of registration" required/>
+				</div>
+				
+				<div class="col-md-6">
+				<button class="btn btn-default btn-block" (click)="goBack()">Back</button>
+				</div>
+				<div class="col-md-6">
+				<button class="btn btn-success btn-block" [disabled]="form.invalid" (click)="save()">Save</button>
+				</div>
+				
+			</div>
+		</main>
+	</section>
+</form>
+
+
